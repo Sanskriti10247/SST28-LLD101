@@ -7,7 +7,7 @@ public class EligibilityEngine {
 
     public void runAndPrint(StudentProfile s) {
         ReportPrinter p = new ReportPrinter();
-        EligibilityEngineResult r = evaluate(s); // giant conditional inside
+        EligibilityEngineResult r = evaluate(s); 
         p.print(s, r);
         store.save(s.rollNo, r.status);
     }
@@ -34,6 +34,8 @@ public class EligibilityEngine {
         return new EligibilityEngineResult(status, reasons);
     }
 }
+
+
 
 class EligibilityEngineResult {
     public final String status;
