@@ -1,8 +1,14 @@
-public class Main {
+public class Demo05 {
     public static void main(String[] args) {
+
         System.out.println("=== Export Demo ===");
 
-        ExportRequest req = new ExportRequest("Weekly Report", SampleData.longBody());
+        ExportRequest req =
+                new ExportRequest(
+                        "Weekly Report",
+                        SampleData.longBody()
+                );
+
         Exporter pdf = new PdfExporter();
         Exporter csv = new CsvExporter();
         Exporter json = new JsonExporter();
