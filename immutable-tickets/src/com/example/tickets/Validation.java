@@ -16,7 +16,7 @@ public final class Validation {
 
     private Validation() {}
 
-    // -------- BASIC STRING VALIDATION --------
+    // BASIC STRING VALIDATION
 
     public static void requireNonBlank(String value, String fieldName) {
         if (value == null || value.trim().isEmpty()) {
@@ -30,7 +30,7 @@ public final class Validation {
         }
     }
 
-    // -------- EMAIL VALIDATION --------
+    // EMAIL VALIDATION 
 
     public static void requireEmail(String email, String fieldName) {
         requireNonBlank(email, fieldName);
@@ -44,7 +44,7 @@ public final class Validation {
         requireEmail(email, fieldName);
     }
 
-    // -------- TICKET ID VALIDATION --------
+    //  TICKET ID VALIDATION 
 
     public static void requireTicketId(String id) {
         requireNonBlank(id, "id");
@@ -56,7 +56,7 @@ public final class Validation {
         }
     }
 
-    // -------- ENUM-LIKE VALIDATION --------
+    //  ENUM-LIKE VALIDATION 
 
     public static void requireOneOf(String value, String fieldName, String... allowed) {
         if (value == null) return; // optional
@@ -68,7 +68,7 @@ public final class Validation {
         );
     }
 
-    // -------- RANGE VALIDATION --------
+    // RANGE VALIDATION 
 
     public static void requireRange(Integer value, int min, int max, String fieldName) {
         if (value == null) return; // optional
