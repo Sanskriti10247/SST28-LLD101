@@ -31,7 +31,7 @@ public final class MetricsRegistry implements Serializable {
     }
 
     /**
-     * Static holder class — loaded only when referenced.
+     * Static holder class —> loaded only when referenced.
      * JVM guarantees thread-safe initialization.
      */
     private static class Holder {
@@ -39,7 +39,7 @@ public final class MetricsRegistry implements Serializable {
     }
 
     /**
-     * Lazy + Thread-safe access point.
+     * Lazy and Thread-safe access point.
      */
     public static MetricsRegistry getInstance() {
         return Holder.INSTANCE;
