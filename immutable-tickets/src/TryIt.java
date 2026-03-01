@@ -13,22 +13,30 @@ import java.util.List;
  */
 public class TryIt {
 
-    public static void main(String[] args) {
-        TicketService service = new TicketService();
+public static void main(String[] args) {
+    TicketService service = new TicketService();
 
-        IncidentTicket t = service.createTicket("TCK-1001", "reporter@example.com", "Payment failing on checkout");
-        System.out.println("Created: " + t);
+    IncidentTicket original = service.createTicket(
+            "TCK-1001",
+            "reporter@example.com",
+            "Payment failing on checkout"
+    );
 
-        // Demonstrate post-creation mutation through service
-        service.assign(t, "agent@example.com");
-        service.escalateToCritical(t);
-        System.out.println("\nAfter service mutations: " + t);
+    System.out.println("Created: " + original);
 
-        // Demonstrate external mutation via leaked list reference
-        List<String> tags = t.getTags();
-        tags.add("HACKED_FROM_OUTSIDE");
-        System.out.println("\nAfter external tag mutation: " + t);
+    // Updates now return NEW instances
+    IncidentTicket assigned = service.assign(original, "agent@example.com");
+    IncidentTicket escalated = service.escalateToCritical(assigned);
 
-        // Starter compiles; after refactor, you should redesign updates to create new objects instead.
+    System.out.println("\nAfter updates (new object): " + escalated);
+
+    // Demonstrate immutability
+    try {
+        escalated.getTags().add("HACKED_FROM_OUTSIDE");
+    } catch (Exception e) {
+        System.out.println("\nTags list is immutable. Cannot modify externally.");
     }
+
+    System.out.println("\nOriginal ticket still unchanged: " + original);
+}
 }
